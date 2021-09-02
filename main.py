@@ -86,12 +86,11 @@ while True:
         extracted = preprocess(cv2.resize(detect_face[y-30:y+h+30, x-30:x+w+30], (48, 48)))
 
         output = run_inference(model, extracted)
-        print(output)
         found_face = True
 
         cv2.rectangle(frame, (x-30, y-30), (x+w+30, y+h+30), (255, 0, 0), 2)
 
-        cv2.imshow('frame', frame)
+        cv2.imshow('frame', extracted[:, :, :, 0])
         break
 
     if cv2.waitKey(1) & 0xFF == ord('q'):

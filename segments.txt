@@ -1,0 +1,12 @@
+left eyebrow to left eye: (19, 20) -> (37, 38)
+right eyebrow to right eye: (23, 24) -> (43, 44)
+y position of eyebrows -> average y coordinate (19, 20), (23, 24)
+left side of mouth -> right side: 48 -> 54
+y position of mouth -> average y coordinate of 48, 54
+mouth angle -> law of cosines with points: 48, 51, 54 with 51 as the vertex
+Right eye to right side of mouth -> (47, 42) -> 54
+left eye to left side of mouth -> (39, 40) -> 48
+
+np.arccos(
+    
+)
