@@ -24,6 +24,8 @@ vid = cv2.VideoCapture(0)
 
 classes = {0: "neutral", 1: "happiness", 2: "surprise", 3: "sadness", 4: "anger"}
 
+average = {"neutral": 0, "happiness": 0, "surprise": 0, "sadness": 0, "anger": 0}
+
 while True:
     ret, frame = vid.read()
 
@@ -53,11 +55,16 @@ while True:
 
             true_class = classes[max_val_index]
 
-            average_index = round(average_emotion)
+            average[true_class] += 1
 
-            average_class = classes[average_index]
+            temp_list = list(average.values())
+            temp_list.remove(max(temp_list))
+
+            most_frequent = list(average.keys())[list(average.values()).index(max(list(average.values())))]
+            second_most_frequent = list(average.keys())[list(average.values()).index(max(temp_list))]
 
             frame = cv2.putText(frame, str(true_class), (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
+            frame = cv2.putText(frame, str(most_frequent) + ", " + str(second_most_frequent), (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2, cv2.LINE_AA)
             cv2.imshow('frame', frame)
         except:
             pass        
